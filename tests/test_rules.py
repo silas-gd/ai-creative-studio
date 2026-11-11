@@ -31,6 +31,10 @@ def test_price_in_cta_text_is_rejected():
     assert any("price" in v for v in violations(card(cta_text="Only $19 a day!")))
 
 
+def test_price_in_title_is_rejected():
+    assert any("price" in v for v in violations(card(title="$12 coffee club")))
+
+
 @pytest.mark.parametrize("field", ["title", "summary", "cta_text"])
 def test_guarantee_is_rejected_in_every_text_field(field):
     text = {"title": "Guaranteed great coffee",
